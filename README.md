@@ -35,7 +35,7 @@ Modal class has three values
     Image (Int)
 
 ##### Limitation
-    ![img.png](img.png)Avoid special charactoers to pass as text to translate
+    Avoid special charactoers to pass as text to translate
 
 
 
