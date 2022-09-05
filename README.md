@@ -14,7 +14,7 @@ implementation 'com.github.tariqzia7523:Translator:Tag'
 
 ## Usage
 
-    Translator.startTranslation("en", "ar", "How are you", object : OnTranslationResult {
+    Translator.startTranslation(inputLanguageCode, outputLanguageCode, TextToTranslate, object : OnTranslationResult {
         override fun onSuccess(text: String) {
             Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
         }
