@@ -411,11 +411,49 @@ object Translator {
             override fun onResponse(call: Call<JsonArray?>, response: Response<JsonArray?>) {
                 Log.e("***MYTAG", "Size "+response.body().toString())
                 try {
+                    var outputString = ""
                     val res1 = response.body()!!.get(0).asJsonArray
-                    val res2 = res1.get(0).asJsonArray
-                    val res3 = res2.get(0).asString
-                    Log.e("***Value", "output is " + res3)
-                    onTranslationResult.onSuccess(res3)
+
+
+                    try{
+                        for(j in 0 until res1.size()){
+                            try{
+                                val res3 = res1.get(j).asJsonArray
+                                try{
+                                    outputString += res3.get(0).asString
+                                }catch (e : Exception){
+                                    e.printStackTrace()
+                                }
+                            }catch (e :Exception){
+                                e.printStackTrace()
+                            }
+                        }
+                    }catch (e : Exception){
+                        e.printStackTrace()
+                    }
+//                    for(i in 0 until res1.size()){
+//                        try{
+//                            val res2 = res1.get(i).asJsonArray
+//                            for(j in 0 until res1.size()){
+//                                try{
+//                                    val res3 = res1.get(j).asJsonArray
+//                                    try{
+//                                        outputString += res3.get(0).asString
+//                                    }catch (e : Exception){
+//                                        e.printStackTrace()
+//                                    }
+//                                }catch (e :Exception){
+//                                    e.printStackTrace()
+//                                }
+//                            }
+//                        }catch (e :Exception){
+//                            e.printStackTrace()
+//                        }
+//                    }
+
+
+                    Log.e("***Value", "output is " + outputString)
+                    onTranslationResult.onSuccess(outputString)
                 } catch (e: Exception) {
                     e.printStackTrace()
                     onTranslationResult.onFailure()
