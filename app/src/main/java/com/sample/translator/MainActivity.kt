@@ -1,32 +1,31 @@
 package com.sample.translator
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.widget.TextViewCompat
 import com.free.translator.OnTranslationResult
 import com.free.translator.Translator
+import com.sample.translator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var textview : AppCompatTextView
+    lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        textview = findViewById(R.id.text)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         Translator.startTranslation("en", "ur", getText(), object : OnTranslationResult {
             override fun onSuccess(text: String) {
-                textview.text = text
+                binding.translatedTexView.text = text
 
             }
             override fun onFailure() {
                 Toast.makeText(this@MainActivity, "Failure", Toast.LENGTH_SHORT).show()
             }
         })
-
     }
-
     fun getText(): String{
-        return getString(R.string.temp_text)
+        return "Hy there! It is really nice to meet you."
     }
 }
