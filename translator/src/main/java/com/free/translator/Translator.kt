@@ -413,8 +413,6 @@ object Translator {
                 try {
                     var outputString = ""
                     val res1 = response.body()!!.get(0).asJsonArray
-
-
                     try{
                         for(j in 0 until res1.size()){
                             try{
@@ -431,27 +429,6 @@ object Translator {
                     }catch (e : Exception){
                         e.printStackTrace()
                     }
-//                    for(i in 0 until res1.size()){
-//                        try{
-//                            val res2 = res1.get(i).asJsonArray
-//                            for(j in 0 until res1.size()){
-//                                try{
-//                                    val res3 = res1.get(j).asJsonArray
-//                                    try{
-//                                        outputString += res3.get(0).asString
-//                                    }catch (e : Exception){
-//                                        e.printStackTrace()
-//                                    }
-//                                }catch (e :Exception){
-//                                    e.printStackTrace()
-//                                }
-//                            }
-//                        }catch (e :Exception){
-//                            e.printStackTrace()
-//                        }
-//                    }
-
-
                     Log.e("***Value", "output is " + outputString)
                     onTranslationResult.onSuccess(outputString)
                 } catch (e: Exception) {
@@ -459,7 +436,6 @@ object Translator {
                     onTranslationResult.onFailure()
                 }
             }
-
             override fun onFailure(call: Call<JsonArray?>, t: Throwable) {
                 onTranslationResult.onFailure()
             }
